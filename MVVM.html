@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MVVM</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 id="root">未修改</h1>
+      <h1>{{b}}</h1>
+      <button id="button">修改</button>
+    </div>
+    <script type="module">
+      import mvvm from './MVVM/mvvm.js';
+      const app = document.querySelector('#app');
+      console.log(app);
+
+      const Vue = new mvvm({
+        data: {
+          a: 'a',
+          b: 'b',
+        },
+        el: '#app',
+      });
+
+      let div = document.getElementById('root');
+      let button = document.getElementById('button');
+      div.textContent = Vue.a;
+      button.onclick = function () {
+        Vue.a = 'sb';
+        console.log(Vue.a);
+        console.log(div.textContent);
+      };
+    </script>
+  </body>
+</html>

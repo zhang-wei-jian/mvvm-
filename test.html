@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+  </head>
+  <body>
+    <!-- <script src="../PubSubJS-master/src/pubsub.js"></script> -->
+    <!-- <script src="./PubSub.js"></script> -->
+
+    <script type="module">
+      import PubSub from './PubSub.js';
+
+      PubSub.subscribe('a', () => {
+        console.log('触发了我订阅');
+      });
+      // PubSub.subscribe('a', function () {
+      //   console.log('我是第二次不一样的执行', this);
+      // });
+
+      PubSub.publish('a');
+    </script>
+  </body>
+</html>

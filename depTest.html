@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>depTest</title>
+  </head>
+  <body>
+    <!-- <script type="module"></script> -->
+    <script src="./MVVM/dep.js"></script>
+    <script>
+      let watcher = new Watcher(() => {
+        console.log('小飞滚来喽');
+      });
+      let dep = new Dep();
+      dep.addSub(watcher);
+      dep.addSub(watcher);
+      console.log(dep);
+
+      dep.notify();
+      // dep.notify();
+    </script>
+  </body>
+</html>
