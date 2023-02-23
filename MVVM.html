@@ -8,10 +8,10 @@
   </head>
   <body>
     <div id="app">
-      <h1 id="root">未修改</h1>
+      <!-- <h1 id="root">未修改</h1> -->
       <h1>{{b}}</h1>
-      <button id="button">修改</button>
     </div>
+    <button id="button">修改</button>
     <script type="module">
       import mvvm from './MVVM/mvvm.js';
       const app = document.querySelector('#app');
@@ -19,19 +19,19 @@
 
       const Vue = new mvvm({
         data: {
-          a: 'a',
           b: 'b',
         },
         el: '#app',
       });
 
-      let div = document.getElementById('root');
+      // let div = document.getElementById('root');
+      //  div.textContent = Vue.a;
       let button = document.getElementById('button');
-      div.textContent = Vue.a;
+
       button.onclick = function () {
-        Vue.a = 'sb';
-        console.log(Vue.a);
-        console.log(div.textContent);
+        Vue.b = 'sb';
+        // console.log(Vue.a);
+        // console.log(div.textContent);
       };
     </script>
   </body>

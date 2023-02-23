@@ -1,4 +1,4 @@
-// 创建Compile构造函数
+import { Watcher } from './dep.js';
 export default function Compile(el, vm) {
   // 将el挂载到实例上方便调用
 
@@ -19,14 +19,18 @@ export default function Compile(el, vm) {
 
       if (node.nodeType === 3 && reg.test(txt)) {
         // 即是文本节点又有大括号的情况{{}}
-        console.log(RegExp.$1); // 匹配到的第一个分组 如： a.b, c
+        // console.log(RegExp.$1); // 匹配到的第一个分组 如： a.b, c/正则括号里面
         let arr = RegExp.$1.split('.');
         let val = vm;
         arr.forEach((key) => {
           val = val[key]; // 如this.a.b
         });
         // 用trim方法去除一下首尾空格
+
         node.textContent = txt.replace(reg, val).trim();
+        new Watcher(vm, RegExp.$1, (newVal) => {
+          node.textContent = txt.replace(reg, newVal).trim(); //在这里订阅，等待被执行更新页面
+        });
       }
       // 如果还有子节点，继续递归replace
       if (node.childNodes && node.childNodes.length) {
